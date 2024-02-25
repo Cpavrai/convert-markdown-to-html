@@ -1,0 +1,30 @@
+name: 'Convert markdown to HTML'
+description: 'Convert all markdown files in a directory to HTML'
+author: Cpavrai
+
+branding:
+  icon: 'file-text'
+  color: 'gray-dark'
+
+inputs:
+  directory:
+    description: 'Which directory to convert files in'
+    required: false
+    default: '.'
+
+runs:
+  using: "composite"
+    steps:
+      - uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16
+
+      - name: Install npm 7
+        run: npm i -g npm@7
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run convertion
+        run: $GITHUB_ACTION_PATH/script.sh ${{ inputs.directory }}
+        shell: sh
