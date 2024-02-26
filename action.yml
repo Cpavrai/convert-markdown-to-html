@@ -11,20 +11,30 @@ inputs:
     description: 'Which directory to convert files in'
     required: false
     default: '.'
+  args:
+    description: 'Which arguments to provide to converter'
+    required: false
+    default: ''
 
 runs:
   using: "composite"
-    steps:
-      - uses: actions/setup-node@v3.6.0
-        with:
-          node-version: 16
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install npm 7
-        run: npm i -g npm@7
+    - name: Set up NodeJS
+      uses: actions/setup-node@v3.6.0
+      with:
+        node-version: 16
 
-      - name: Install Dependencies
-        run: npm ci
+    - name: Install npm 7
+      run: npm i -g npm@7
+      shell: sh
 
-      - name: Run convertion
-        run: $GITHUB_ACTION_PATH/script.sh ${{ inputs.directory }}
-        shell: sh
+    - name: Install ShowDown
+      run: npm i -g showdown@2.1.0
+      shell: sh
+
+    - name: Run convertion
+      run: $GITHUB_ACTION_PATH/script.sh ${{ inputs.directory }} "${{ inputs.args }}"
+      shell: sh

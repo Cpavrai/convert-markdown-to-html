@@ -12,7 +12,7 @@ do
     # this command will transform filename by changing extension
     html_file="$( echo "$file" | sed -e 's/\.md//g').html"
 
-    node ./node_modules/showdown/bin/showdown makehtml -i "$file" -o "$html_file"
+    showdown makehtml -i "$file" -o "$html_file" $2
 
 done < filelist.dat
 
