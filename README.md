@@ -17,8 +17,12 @@ Specifies which arguments to use with converter. List of available arguments are
 ```yaml
 steps:
   - name: Convert markdown file to html
-    uses: Cpavrai/convert-markdown-to-html@v1
+    uses: Cpavrai/convert-markdown-to-html@v2
     with:
-      directory: '.'
-      args: '-u UTF8 -c ghCompatibleHeaderId -c emoji -c tables'
+      directory: './docs' # Default '.'
+      args: '-u UTF8 -c ghCompatibleHeaderId -c emoji -c tables' # Default ''
 ```
+
+## Licence
+
+MIT

@@ -1,4 +1,4 @@
-name: 'Convert markdown to HTML'
+name: 'Convert markdown files to HTML files'
 description: 'Convert all markdown files in a directory to HTML'
 author: Cpavrai
 
